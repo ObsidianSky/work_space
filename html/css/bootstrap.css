@@ -369,8 +369,6 @@ abbr[data-original-title] {
 @media (min-width: 768px) {
   .container {
     width: 750px;
-    padding-left: 15px;
-    padding-right: 15px;
   }
 }
 @media (min-width: 992px) {
@@ -2113,6 +2111,7 @@ fieldset[disabled] .checkbox label {
 }
 .btn {
   display: inline-block;
+  text-decoration: none;
   margin-bottom: 0;
   font-weight: normal;
   text-align: center;
@@ -2121,7 +2120,7 @@ fieldset[disabled] .checkbox label {
   cursor: pointer;
   background-image: none;
   border: 1px solid transparent;
-  white-space: nowrap;
+  white-space: normal;
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857143;
@@ -2129,6 +2128,7 @@ fieldset[disabled] .checkbox label {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  border-radius:0;
 }
 .btn:focus,
 .btn:active:focus,
@@ -2218,12 +2218,10 @@ tbody.collapse.in {
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  background-color: #eeeeee;
 }
 .nav > li.disabled > a {
   color: #777777;
@@ -2416,8 +2414,6 @@ tbody.collapse.in {
 }
 .navbar-collapse {
   overflow-x: visible;
-  padding-right: 15px;
-  padding-left: 15px;
   -webkit-overflow-scrolling: touch;
 }
 .navbar-collapse.in {
@@ -2544,9 +2540,7 @@ tbody.collapse.in {
   }
 }
 .navbar-nav > li > a {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  line-height: 20px;
+  text-decoration: none;
 }
 @media (max-width: 767px) {
   .navbar-nav .open .dropdown-menu {
@@ -2572,15 +2566,10 @@ tbody.collapse.in {
 }
 @media (min-width: 768px) {
   .navbar-nav {
-    float: left;
     margin: 0;
   }
   .navbar-nav > li {
     float: left;
-  }
-  .navbar-nav > li > a {
-    padding-top: 15px;
-    padding-bottom: 15px;
   }
 }
 .navbar-nav > li > .dropdown-menu {
