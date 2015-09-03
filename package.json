@@ -1,0 +1,19 @@
+{
+  "name": "OSky_package",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.8.2",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-imagemin": "*",
+    "gulp-less": "*",
+    "gulp-less-import": "*",
+    "gulp-watch": "*",
+    "gulp.spritesmith": "*",
+    "imagemin-pngquant": "*",
+    "rimraf": "*"
+  }
+}
