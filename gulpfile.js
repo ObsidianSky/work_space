@@ -102,7 +102,7 @@ gulp.task('image:build', function () {
 });
 
 gulp.task('image:optimize', function(){
-    gulp.src(path.dev.img) /
+    gulp.src(path.dev.img) 
     .pipe(imagemin({
         progressive: true,
         use: [pngquant()],
