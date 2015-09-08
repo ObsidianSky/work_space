@@ -7,12 +7,12 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
-    browserSync = require('browser-sync'),
-    reload = browserSync.reload,
+    // browserSync = require('browser-sync'),
+    // reload = browserSync.reload,
     rimraf = require('rimraf');
 
 var path = {
-    build: { //Тут мы укажем куда складывать готовые после сборки файлы
+    build: { 
         html: 'html/',
         css: 'html/css/',
         img: 'html/img/',
@@ -20,17 +20,17 @@ var path = {
         js: 'html/js',
         libs: 'html/libs'
     },
-    dev: { //Пути откуда брать исходники
-        html: 'dev/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
-        js: 'dev/js/**/*.js',//В стилях и скриптах нам понадобятся только main файлы
-        libs: 'dev/libs/**/*.js',//В стилях и скриптах нам понадобятся только main файлы
+    dev: { 
+        html: 'dev/*.html', 
+        js: 'dev/js/**/*.js',
+        libs: 'dev/libs/**/*.js',
         less: 'dev/less/all.less',
         css: 'dev/css/**/*.css',
         sprites: 'dev/img/sprites/*.*',
-        img: 'dev/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
+        img: 'dev/img/**/*.*', 
         fonts: 'dev/fonts/**/*.*'
     },
-    watch: { //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
+    watch: { 
         html: 'dev/**/*.html',
         js: 'dev/js/**/*.js',
         less: 'dev/less/**/*.less',
@@ -53,68 +53,67 @@ var config = {
 };
 
 gulp.task('html:build', function(){
-    gulp.src(path.dev.html) //Найдем наш main файл
+    gulp.src(path.dev.html)
     .pipe(gulp.dest(path.build.html));
-    // .pipe(reload({stream: true}));    
+   
 })
 
 gulp.task('js:build', function () {
-    gulp.src(path.dev.js) //Найдем наш main файл
+    gulp.src(path.dev.js)
     .pipe(gulp.dest(path.build.js));
-    // .pipe(reload({stream: true}));
+
 });
 
 gulp.task('libs:build', function () {
     gulp.src(path.dev.libs) 
     .pipe(gulp.dest(path.build.libs));
-    // .pipe(reload({stream: true})); 
+   
 });
 
 gulp.task('sprite:build', function() {
     var spriteData = 
-        gulp.src(path.dev.sprites) // путь, откуда берем картинки для спрайта
+        gulp.src(path.dev.sprites) 
         .pipe(spritesmith({
             imgName: 'sprite.png',
             cssName: 'icons.less',
             cssFormat: 'less',
             algorithm: 'top-down'
         }));
-    spriteData.img.pipe(gulp.dest('./dev/img')); // путь, куда сохраняем картинку
-    spriteData.css.pipe(gulp.dest('./dev/less')); // путь, куда сохраняем стили
-    // spriteData.pipe(reload({stream: true}));
+    spriteData.img.pipe(gulp.dest('./dev/img')); 
+    spriteData.css.pipe(gulp.dest('./dev/less')); 
+    
 });
 
 gulp.task('less:build', function () {
     gulp.src(path.dev.less) 
-    .pipe(less()) //Скомпилируем
-    .pipe(prefixer()) //Добавим вендорные префиксы
+    .pipe(less()) 
+    .pipe(prefixer()) 
     .pipe(gulp.dest(path.build.css));
-    // .pipe(reload({stream: true})); //И в build
-
 });
 
 gulp.task('css:build', function () {
     gulp.src(path.dev.css) 
     .pipe(gulp.dest(path.build.css));
-    // .pipe(reload({stream: true})); //И в build
-
 });
 
 gulp.task('image:build', function () {
-    gulp.src(path.dev.img) //Выберем наши картинки
-    .pipe(imagemin({ //Сожмем их
+    gulp.src(path.dev.img)
+    .pipe(gulp.dest(path.build.img));
+});
+
+gulp.task('image:optimize', function(){
+    gulp.src(path.dev.img) /
+    .pipe(imagemin({
         progressive: true,
         use: [pngquant()],
         interlaced: true
     }))
     .pipe(gulp.dest(path.build.img));
-    // .pipe(reload({stream: true})); //И бросим в build
 });
 
 gulp.task('fonts:build', function() {
     gulp.src(path.dev.fonts)
     .pipe(gulp.dest(path.build.fonts));
-    // .pipe(reload({stream: true}));
 });
 
 gulp.task('build', [
@@ -128,9 +127,6 @@ gulp.task('build', [
     'fonts:build'
 ]);
 
-// gulp.task('webserver', function () {
-//     browserSync(config);
-// });
 
 gulp.task('clean', function (cb) {
     rimraf(path.clean, cb);
