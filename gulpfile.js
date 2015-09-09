@@ -36,6 +36,7 @@ var path = {
         less: 'dev/less/**/*.less',
         css: 'dev/css/**/*.css',
         img: 'dev/img/**/*.*',
+        sprite: 'dev/img/sprites/*.*',
         fonts: 'dev/fonts/**/*.*',
         libs: 'dev/libs/**/*.*'
     },
@@ -77,7 +78,8 @@ gulp.task('sprite:build', function() {
             imgName: 'sprite.png',
             cssName: 'icons.less',
             cssFormat: 'less',
-            algorithm: 'top-down'
+            algorithm: 'top-down',
+            imgPath: '../img/sprite.png'
         }));
     spriteData.img.pipe(gulp.dest('./dev/img')); 
     spriteData.css.pipe(gulp.dest('./dev/less')); 
@@ -86,7 +88,9 @@ gulp.task('sprite:build', function() {
 
 gulp.task('less:build', function () {
     gulp.src(path.dev.less) 
-    .pipe(less()) 
+    .pipe(less()).on('error', function(err){
+        console.log(err);
+    })  
     .pipe(prefixer()) 
     .pipe(gulp.dest(path.build.css));
 });
@@ -152,6 +156,9 @@ gulp.task('watch', function(){
     });
     watch([path.watch.img], function(event, cb) {
         gulp.start('image:build');
+    });
+    watch([path.watch.sprite], function(event, cb) {
+        gulp.start('sprite:build');
     });
     watch([path.watch.fonts], function(event, cb) {
         gulp.start('fonts:build');
