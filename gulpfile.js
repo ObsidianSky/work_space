@@ -7,8 +7,6 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
-    // browserSync = require('browser-sync'),
-    // reload = browserSync.reload,
     rimraf = require('rimraf');
 
 var path = {
@@ -21,7 +19,7 @@ var path = {
         libs: 'html/libs'
     },
     dev: { 
-        html: 'dev/*.html', 
+        html: 'dev/*.*', 
         js: 'dev/js/**/*.js',
         libs: 'dev/libs/**/*.js',
         less: 'dev/less/all.less',
@@ -41,16 +39,6 @@ var path = {
         libs: 'dev/libs/**/*.*'
     },
     clean: './html'
-};
-
-var config = {
-    server: {
-        baseDir: "./html"
-    },
-    tunnel: true,
-    host: 'localhost',
-    port: 9000,
-    logPrefix: "Obsidian_Sky"
 };
 
 gulp.task('html:build', function(){
