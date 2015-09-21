@@ -29,7 +29,7 @@ var path = {
         fonts: 'dev/fonts/**/*.*'
     },
     watch: { 
-        html: 'dev/**/*.html',
+        html: 'dev/**/*.*',
         js: 'dev/js/**/*.js',
         less: 'dev/less/**/*.less',
         css: 'dev/css/**/*.css',
