@@ -1,37 +1,66 @@
-.placeholders(@color: #999){
-	.form-control::-moz-placeholder {
+.placeholder(@color: #999, @selector: ~'.form-control'){
+	@{selector}::-moz-placeholder {
 	  color: @color;
 	  opacity: 1;
 	}
-	.form-control:-ms-input-placeholder {
+	@{selector}:-ms-input-placeholder {
 	  color: @color;
 	}
-	.form-control::-webkit-input-placeholder {
+	@{selector}::-webkit-input-placeholder {
 	  color: @color;
 	}
 }
 
-.icon(@width, @height, @offset: 0){
-	width: @width;
-	height: @height;
-	background: url('../img/icons.png');
-	background-position: 0 -@offset;
-}
-
-.p(){
-	p{
-		margin: 0;
-	}
-}
-.font-f(@family: arial, @weight: normal, @style: normal){
+.font-min(@family: arial,@path: @family, @weight: normal, @style: normal){
     @font-face{
         font-family: @family;
-	    src: url('../fonts/@{family}/@{family}.eot');
-	    src: url('../fonts/@{family}/@{family}.eot?#iefix') format('embedded-opentype'),
-	         url('../fonts/@{family}/@{family}.woff2') format('woff2'),
-	         url('../fonts/@{family}/@{family}.woff') format('woff'),
-	         url('../fonts/@{family}/@{family}.ttf') format('truetype'),
-	         url('../fonts/@{family}/@{family}.svg#@{family}') format('svg');
+	    src: url('../fonts/@{path}/@{path}.eot');
+	    src: url('../fonts/@{path}/@{path}.eot?#iefix') format('embedded-opentype'),
+	         url('../fonts/@{path}/@{path}.woff') format('woff'),
+	         url('../fonts/@{path}/@{path}.ttf') format('truetype');
+        font-weight: @weight;
+        font-style: @style;
+    }
+}
+
+.font-woff2(@family: arial,@path: @family, @weight: normal, @style: normal){
+    @font-face{
+        font-family: @family;
+	    src: url('../fonts/@{path}/@{path}.eot');
+	    src: url('../fonts/@{path}/@{path}.eot?#iefix') format('embedded-opentype'),
+	         url('../fonts/@{path}/@{path}.woff') format('woff'),
+	         url('../fonts/@{path}/@{path}.woff2') format('woff2'),
+	         url('../fonts/@{path}/@{path}.ttf') format('truetype');
+
+        font-weight: @weight;
+        font-style: @style;
+    }
+}
+	         
+
+.font-svg(@family: arial, @path: @family, @weight: normal, @style: normal){
+    @font-face{
+        font-family: @family;
+	    src: url('../fonts/@{path}/@{path}.eot');
+	    src: url('../fonts/@{path}/@{path}.eot?#iefix') format('embedded-opentype'),
+	         url('../fonts/@{path}/@{path}.woff') format('woff'),
+	         url('../fonts/@{path}/@{path}.woff2') format('woff2'),
+	         url('../fonts/@{path}/@{path}.ttf') format('truetype'),
+			 url('../fonts/@{path}/@{path}.svg#@{path}') format('svg');
+        font-weight: @weight;
+        font-style: @style;
+    }
+}
+
+.font-full(@family: arial,@path: @family, @weight: normal, @style: normal){
+    @font-face{
+        font-family: @family;
+	    src: url('../fonts/@{path}/@{path}.eot');
+	    src: url('../fonts/@{path}/@{path}.eot?#iefix') format('embedded-opentype'),
+	         url('../fonts/@{path}/@{path}.woff') format('woff'),
+	         url('../fonts/@{path}/@{path}.woff2') format('woff2'),
+	         url('../fonts/@{path}/@{path}.ttf') format('truetype'),
+			 url('../fonts/@{path}/@{path}.svg#@{path}') format('svg');
         font-weight: @weight;
         font-style: @style;
     }

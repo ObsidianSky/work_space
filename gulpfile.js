@@ -13,30 +13,30 @@ var path = {
     build: { 
         html: 'html/',
         css: 'html/css/',
-        img: 'html/img/',
-        fonts: 'html/fonts/',
         js: 'html/js',
-        libs: 'html/libs'
+        img: 'html/img/',
+        libs: 'html/libs',
+        fonts: 'html/fonts/'
     },
     dev: { 
         html: 'dev/*.*', 
-        js: 'dev/js/**/*.js',
-        libs: 'dev/libs/**/*.js',
-        less: 'dev/less/all.less',
         css: 'dev/css/**/*.css',
-        sprites: 'dev/img/sprites/*.*',
+        less: 'dev/less/all.less',
+        js: 'dev/js/**/*.js',
         img: 'dev/img/**/*.*', 
+        sprites: 'dev/img/sprites/*.*',
+        libs: 'dev/libs/**/*.js',
         fonts: 'dev/fonts/**/*.*'
     },
     watch: { 
         html: 'dev/**/*.*',
-        js: 'dev/js/**/*.js',
-        less: 'dev/less/**/*.less',
         css: 'dev/css/**/*.css',
+        less: 'dev/less/**/*.less',
+        js: 'dev/js/**/*.js',
         img: 'dev/img/**/*.*',
         sprite: 'dev/img/sprites/*.*',
-        fonts: 'dev/fonts/**/*.*',
-        libs: 'dev/libs/**/*.*'
+        libs: 'dev/libs/**/*.*',
+        fonts: 'dev/fonts/**/*.*'
     },
     clean: './html'
 };
