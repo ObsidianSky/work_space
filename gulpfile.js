@@ -7,7 +7,9 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
-    rimraf = require('rimraf');
+    rimraf = require('rimraf'),
+    // livereload = require('livereload'),
+    connect = require('gulp-connect');
 
 var path = {
     build: { 
@@ -40,10 +42,18 @@ var path = {
     },
     clean: './html'
 };
+ 
+gulp.task('connect', function() {
+  connect.server({
+    root: 'app',
+    livereload: true
+  });
+});
 
 gulp.task('html:build', function(){
     gulp.src(path.dev.html)
-    .pipe(gulp.dest(path.build.html));
+    .pipe(gulp.dest(path.build.html))
+    .pipe(connect.reload());
    
 })
 
@@ -124,7 +134,7 @@ gulp.task('clean', function (cb) {
     rimraf(path.clean, cb);
 });
 
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['connect', 'build', 'watch']);
 
 gulp.task('watch', function(){
     watch([path.watch.html], function(event, cb) {
