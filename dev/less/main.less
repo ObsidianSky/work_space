@@ -14,6 +14,18 @@ html{
 	font-size: 20px;
 	overflow-x: hidden;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	@media @-desktop{
+		font-size: 19px;
+	}
+	@media @-tablet{
+		font-size: 18px;
+	}   
+	@media @-mobile{
+		font-size: 17px;
+	}
+	@media @-small-mobile{
+	 	font-size: 16px;
+	}
 }
 
 body {
@@ -21,7 +33,8 @@ body {
 	font-weight: 400;
 	font-size: 14px;
 	min-width: 320px;
-	color: #fff;
+	color: #000;
+	line-height:1.4;
 	position: relative;
 	overflow-x: hidden;
 	-webkit-font-smoothing: antialised; 
@@ -55,9 +68,11 @@ img{
 	height: auto;
 	vertical-align: middle;
 }
+
 .relative{
 	position: relative;
 }
+
 a{
 	font-size: 15px;
 	color:#fff;
@@ -66,14 +81,4 @@ a{
 		color:#fff;
 		text-decoration: none;
 	}
-}
-
-.text-bold{
-	font-weight: 700;
-}
-.text-light{
-	font-weight: 300;
-}
-.text-semi{
-	font-weight: 800;
 }

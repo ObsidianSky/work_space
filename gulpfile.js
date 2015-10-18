@@ -8,7 +8,6 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
-    // livereload = require('livereload'),
     connect = require('gulp-connect');
 
 var path = {
@@ -59,13 +58,15 @@ gulp.task('html:build', function(){
 
 gulp.task('js:build', function () {
     gulp.src(path.dev.js)
-    .pipe(gulp.dest(path.build.js));
+    .pipe(gulp.dest(path.build.js))
+    .pipe(connect.reload());
 
 });
 
 gulp.task('libs:build', function () {
     gulp.src(path.dev.libs) 
-    .pipe(gulp.dest(path.build.libs));
+    .pipe(gulp.dest(path.build.libs))
+    .pipe(connect.reload());
    
 });
 
@@ -90,17 +91,20 @@ gulp.task('less:build', function () {
         console.log(err);
     })  
     .pipe(prefixer()) 
-    .pipe(gulp.dest(path.build.css));
+    .pipe(gulp.dest(path.build.css))
+    .pipe(connect.reload());
 });
 
 gulp.task('css:build', function () {
     gulp.src(path.dev.css) 
-    .pipe(gulp.dest(path.build.css));
+    .pipe(gulp.dest(path.build.css))
+    .pipe(connect.reload());
 });
 
 gulp.task('image:build', function () {
     gulp.src(path.dev.img)
-    .pipe(gulp.dest(path.build.img));
+    .pipe(gulp.dest(path.build.img))
+    .pipe(connect.reload());
 });
 
 gulp.task('image:optimize', function(){
@@ -110,12 +114,14 @@ gulp.task('image:optimize', function(){
         use: [pngquant()],
         interlaced: true
     }))
-    .pipe(gulp.dest(path.build.img));
+    .pipe(gulp.dest(path.build.img))
+    .pipe(connect.reload());
 });
 
 gulp.task('fonts:build', function() {
     gulp.src(path.dev.fonts)
-    .pipe(gulp.dest(path.build.fonts));
+    .pipe(gulp.dest(path.build.fonts))
+    .pipe(connect.reload());
 });
 
 gulp.task('build', [
