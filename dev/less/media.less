@@ -8,12 +8,12 @@
 @tablet:       ~"only screen and (min-width : 992px)";
 @desktop:      ~"only screen and (min-width : 1200px)";
 
-.more(@maxWidth; @rules) {
+.less(@maxWidth; @rules) {
     @media only screen and (max-width: @maxWidth) {
         @rules();
     }
 }
-.less(@minWidth;  @rules) {
+.more(@minWidth;  @rules) {
     @media only screen and (min-width: @minWidth) {
         @rules();
     }
