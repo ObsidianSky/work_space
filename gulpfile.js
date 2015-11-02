@@ -8,7 +8,13 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
+    rigger = require('gulp-rigger'),
+    // plumber = require('gulp-plumber'),
     connect = require('gulp-connect');
+
+var onError = function (err){  
+  console.log(err);
+};
 
 var path = {
     build: { 
@@ -30,7 +36,8 @@ var path = {
         fonts: 'dev/fonts/**/*.*'
     },
     watch: { 
-        html: 'dev/**/*.*',
+        html: 'dev/*.*',
+        templates: 'dev/templates/*.*',
         css: 'dev/css/**/*.css',
         less: 'dev/less/**/*.less',
         js: 'dev/js/**/*.js',
@@ -51,6 +58,7 @@ gulp.task('connect', function() {
 
 gulp.task('html:build', function(){
     gulp.src(path.dev.html)
+    .pipe(rigger())
     .pipe(gulp.dest(path.build.html))
     .pipe(connect.reload());
    
@@ -143,6 +151,9 @@ gulp.task('clean', function (cb) {
 gulp.task('default', ['connect', 'build', 'watch']);
 
 gulp.task('watch', function(){
+    watch([path.watch.templates], function(event, cb) {
+        gulp.start('html:build');
+    }); 
     watch([path.watch.html], function(event, cb) {
         gulp.start('html:build');
     }); 
