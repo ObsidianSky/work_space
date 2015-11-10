@@ -2,14 +2,20 @@
 *:after {
 	box-sizing:border-box;
 }
-
 *{
 	margin: 0;
 	padding: 0;
 	box-sizing:border-box;
 	outline:none !important;
 }
-
+input, button, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+[role="button"] {
+  cursor: pointer;
+}
 html{
 	font-size: 20px;
 	overflow-x: hidden;
@@ -48,17 +54,9 @@ body {
 .hidden {
 	display: none; 
 }
-
-input, button, select, textarea {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
+.no-wrap{
+	white-space: nowrap;
 }
-
-[role="button"] {
-  cursor: pointer;
-}
-
 textarea{
 	resize:none;
 }
