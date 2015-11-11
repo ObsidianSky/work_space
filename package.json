@@ -8,20 +8,18 @@
     "gulp": "*",
     "gulp-autoprefixer": "*",
     "gulp-changed": "^1.3.0",
+    "gulp-concat-css": "^2.2.0",
     "gulp-connect": "*",
     "gulp-cssmin": "^0.1.7",
-    "gulp-deploy-ftp": "*",
+    "gulp-iconfont": "^5.0.0",
+    "gulp-iconfont-css": "^2.0.0",
     "gulp-imagemin": "*",
     "gulp-less": "*",
-    "gulp-less-import": "*",
     "gulp-rigger": "*",
+    "gulp-strip-css-comments": "^1.2.0",
     "gulp-watch": "*",
     "gulp.spritesmith": "*",
     "imagemin-pngquant": "*",
     "rimraf": "*"
-  },
-  "devDependencies": {
-    "gulp-iconfont": "^5.0.0",
-    "gulp-iconfont-css": "^2.0.0"
   }
 }

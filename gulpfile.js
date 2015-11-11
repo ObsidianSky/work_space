@@ -10,10 +10,12 @@ var gulp = require('gulp'),
     rimraf = require('rimraf'),
     rigger = require('gulp-rigger'),
     changed = require('gulp-changed'),
-	cssmin = require('gulp-cssmin'),
+    cssmin = require('gulp-cssmin'),
+    concatCss = require('gulp-concat-css'),
     connect = require('gulp-connect'),
-	iconfont = require('gulp-iconfont'),
-	iconfontCss = require('gulp-iconfont-css');
+    iconfont = require('gulp-iconfont'),
+    stripCssComments = require('gulp-strip-css-comments'),
+    iconfontCss = require('gulp-iconfont-css');
 
 var onError = function (err){  
   console.log(err);
@@ -105,13 +107,16 @@ gulp.task('less:build', function () {
         console.log(err);
     })  
     .pipe(prefixer()) 
+    .pipe(stripCssComments())
+    .pipe(cssmin())
     .pipe(gulp.dest(path.build.css))
     .pipe(connect.reload());
 });
 
 gulp.task('css:build', function () {
     gulp.src(path.dev.css) 
-    .pipe(changed(path.build.css))
+    .pipe(concatCss('libs.css'))
+    .pipe(stripCssComments())
     .pipe(cssmin())
     .pipe(gulp.dest(path.build.css))
     .pipe(connect.reload());
