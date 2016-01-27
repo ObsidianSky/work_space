@@ -8,14 +8,37 @@
 	box-sizing:border-box;
 	outline:none !important;
 }
+textarea{
+	resize:none;
+}
+
+img{
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+}
+
+a{
+	font-size: inherit;
+	color:inherit;
+	text-decoration: underline;
+	&:hover,:active{
+		text-decoration: none;
+	}
+}
+iframe{
+	border:none;
+}
 input, button, select, textarea {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
 }
+
 [role="button"] {
   cursor: pointer;
 }
+
 html{
 	font-size: 20px;
 	overflow-x: hidden;
@@ -57,27 +80,9 @@ body {
 .no-wrap{
 	white-space: nowrap;
 }
-textarea{
-	resize:none;
-}
-
-img{
-	max-width: 100%;
-	height: auto;
-	vertical-align: middle;
-}
 
 .relative{
 	position: relative;
-}
-
-a{
-	font-size: inherit;
-	color:inherit;
-	text-decoration: underline;
-	&:hover,:active{
-		text-decoration: none;
-	}
 }
 
 .container{
