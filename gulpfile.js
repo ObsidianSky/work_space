@@ -17,6 +17,8 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     reload = browserSync.reload,
     stripCssComments = require('gulp-strip-css-comments'),
+    svgstore = require('gulp-svgstore'),
+    rename = require('gulp-rename'),
     includer = require("gulp-x-includer");
 
 var path = {
@@ -36,7 +38,8 @@ var path = {
         img: 'dev/img/**/*.*',
         sprites: 'dev/img/sprites/*.*',
         libs: 'dev/libs/**/*.js',
-        fonts: 'dev/fonts/**/*.*'
+        fonts: 'dev/fonts/**/*.*',
+        svgstore: 'dev/svgstore/'
     },
     watch: { 
         html: 'dev/*.*',
@@ -56,6 +59,26 @@ function onError (err) {
     console.log(err);
     this.emit('end');
 }
+
+gulp.task('svgstore', function () {
+    gulp.src(path.dev.svgstore + 'source/**/*.svg',{ base: path.dev.svgstore })
+	.pipe(rename(function(path){
+		var array = path.dirname.split('\\');
+		var prefix = array[array.length-1];
+		path.basename = prefix+'-'+path.basename;
+	}))
+	.pipe(changed(path.dev.svgstore + 'source/**/*.svg'))
+	    .pipe(imagemin({
+	        progressive: true,
+	        interlaced: true,
+	        use: [pngquant()],
+	        svgoPlugins: [{cleanupIDs: false}]
+	    })).on('error', function(err){
+	        console.log(err);
+	    })  
+        .pipe(svgstore())
+        .pipe(gulp.dest(path.dev.svgstore));
+});
 
 gulp.task('html:build', function(){
     gulp.src(path.dev.html)
@@ -154,6 +177,7 @@ gulp.task('htmlBuild', [
     'css:build',
     'less:build',
     'image:build',
+    'svgstore',
     'fonts:build'
 ]);
 
@@ -200,6 +224,9 @@ gulp.task('watch',['browser-sync'], function(){
     watch([path.watch.fonts], function(event, cb) {
         
         gulp.start('fonts:build');
+    });
+    watch([path.dev.svgstore + 'source/**/*.svg'], function(event, cb) {
+        gulp.start('svgstore');
     });
 
 });
